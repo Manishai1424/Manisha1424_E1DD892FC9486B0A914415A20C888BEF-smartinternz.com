@@ -62,4 +62,125 @@ Extract insights from the dataset using *visual* and *statistical* exploration t
 ## 👤 Author
 - *Name:* MANISHA
 - *Email:* immanimman352@gmail.com  
-- *GitHub:* 
+- *GitHub:*
+
+- #task5
+- GitHub README for the Sales Trend Analysis task:
+
+
+---
+
+Sales Trend Analysis Using Aggregations
+
+📌 Objective
+
+Analyze monthly revenue and order volume from the online_sales dataset using SQL aggregation functions.
+
+
+---
+
+📂 Dataset
+
+Table: online_sales
+Columns:
+
+order_id — Unique identifier for each order
+
+order_date — Date of the order
+
+amount — Revenue from the order
+
+product_id — Product sold
+
+
+
+---
+
+🛠 Tools & Requirements
+
+SQL Database: PostgreSQL / MySQL / SQLite
+
+SQL client: pgAdmin / MySQL Workbench / DBeaver
+
+Dataset file (online_sales)
+
+
+
+---
+
+📜 Steps to Complete the Task
+
+1. Extract Month & Year
+
+EXTRACT(YEAR FROM order_date) AS year
+EXTRACT(MONTH FROM order_date) AS month
+
+
+2. Group Data by Year & Month
+
+GROUP BY year, month
+
+
+3. Calculate Monthly Revenue
+
+SUM(amount) AS total_revenue
+
+
+4. Calculate Order Volume
+
+COUNT(DISTINCT order_id) AS total_volume
+
+
+5. Sort Results Chronologically
+
+ORDER BY year, month
+
+
+6. (Optional) Filter Date Range
+
+WHERE order_date >= '2025-01-01'
+
+
+7. (Optional) Top 3 Months by Sales
+
+ORDER BY total_revenue DESC
+LIMIT 3
+
+
+
+
+---
+
+💻 SQL Script
+
+-- Monthly revenue and volume
+SELECT 
+    EXTRACT(YEAR FROM order_date) AS year, 
+    EXTRACT(MONTH FROM order_date) AS month, 
+    SUM(amount) AS total_revenue, 
+    COUNT(DISTINCT order_id) AS total_volume
+FROM 
+    online_sales
+GROUP BY 
+    EXTRACT(YEAR FROM order_date), 
+    EXTRACT(MONTH FROM order_date)
+ORDER BY 
+    year, month;
+
+
+---
+
+📊 Expected Output
+
+year	month	total_revenue	total_volume
+
+2024	12	14200	335
+2025	01	15000	350
+2025	02	13000	320
+2025	03	17000	370
+2025	04	16500	360
+2025	05	18000	390
+2025	06	15500	340
+2025	07	16200	345
+2025	08	17500	355
+
